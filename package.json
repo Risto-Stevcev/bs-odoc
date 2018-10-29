@@ -1,6 +1,6 @@
 {
   "name": "@ristostevcev/bs-odoc",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": " Helper package to run odoc for bucklescript projects",
   "main": "odoc.sh",
   "bin": "odoc.sh",
