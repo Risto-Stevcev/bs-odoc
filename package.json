@@ -1,0 +1,27 @@
+{
+  "name": "@ristostevcev/bs-odoc",
+  "version": "1.0.0",
+  "description": " Helper package to run odoc for bucklescript projects",
+  "main": "odoc.sh",
+  "bin": "odoc.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Risto-Stevcev/bs-odoc.git"
+  },
+  "keywords": [
+    "bucklescript",
+    "doc",
+    "docs",
+    "odoc",
+    "odocs"
+  ],
+  "author": "Risto Stevcev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Risto-Stevcev/bs-odoc/issues"
+  },
+  "homepage": "https://github.com/Risto-Stevcev/bs-odoc#readme"
+}
