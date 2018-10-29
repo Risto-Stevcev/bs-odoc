@@ -1,8 +1,12 @@
 #!/bin/bash
 
 readonly PKG_NAME_RE='.*\"name\":\s*"\(.*\)".*'
+readonly REMOVE_NAMESPACE_RE='^[^\/]*\/\(.*\)'
 readonly PKG_NAME=$(
-  cat bsconfig.json | grep "\"name\":" | sed -e 's/'"${PKG_NAME_RE}"'/\1/g'
+  cat bsconfig.json \
+  | grep "\"name\":" \
+  | sed -e 's/'"${PKG_NAME_RE}"'/\1/g' \
+        -e 's/'"${REMOVE_NAMESPACE_RE}"'/\1/'
 )
 readonly DOCS=${1:-docs}
 
