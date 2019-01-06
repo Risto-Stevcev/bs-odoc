@@ -13,9 +13,12 @@ readonly DOCS=${1:-docs}
 readonly ODOC=$(which odoc)
 readonly LIB=./lib/bs
 
-readonly CMT_FILES=$(find ${LIB} -name "*.cmt")
-readonly ODOC_FILES=$(echo ${CMT_FILES} | sed "s/cmt/odoc/g")
+# Creates args for `find` to excludes .cmt extensions for files that have .cmti
+readonly CMTI_EXCLUDES=$(find ${LIB} -name *.cmti | sed -e "s/cmti/cmt/g" | awk -vRS="" -vOFS=" ! -path " '$1=" ! -path "$1')
+readonly CMT_FILES=$(find ${LIB} -name *.cmti -o -name *.cmt $CMTI_EXCLUDES)
+readonly ODOC_FILES=$(echo ${CMT_FILES} | sed "s/cmti\?/odoc/g")
 readonly INCLUDES=$(find ${LIB} -type d | tail -n +2 | xargs echo | sed -e 's/ / -I /g' -e 's/^/-I /')
+
 
 function cleanup_folder {
   echo "<< Cleanup folder..."
