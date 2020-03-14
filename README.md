@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This project is deprecated and unmaintained. Use the [bsdoc][2] package instead.
+
 # bs-odoc
 
 Helper package to run [odoc][1] for bucklescript projects 
@@ -40,3 +44,4 @@ eval `opam config env`
 See LICENSE
 
 [1]: https://github.com/ocaml/odoc
+[2]: https://github.com/reuniverse/bsdoc
