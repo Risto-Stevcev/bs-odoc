@@ -28,19 +28,24 @@ Options:
 
   -d  The directory to place the docs in. Defaults to docs/
   -i  An optional index.mld file (place it in the project root)
+  -g  Optionally prepare everything for github docs (ignores anything passed to -d)
   -h  Help
 EOF
 }
 
 
 # Get options
-while getopts ":d:i:h" opts; do
+while getopts ":d:i:hg" opts; do
   case "${opts}" in
     d)
       DOCS=${OPTARG};;
     i)
       INDEX_FILE=${OPTARG}
       INDEX_FILE_ODOC=$(echo ${INDEX_FILE}  | sed "s/mld/odoc/g" | awk '{print "page-" $1}')
+      ;;
+    g)
+      PREPARE_FOR_GITHUB=true
+      DOCS="docs"
       ;;
     h)
       usage
@@ -121,12 +126,26 @@ function add_support_files {
   echo ">> Done!"
 }
 
+function prepare_for_github_docs {
+  echo "<< Prepare for github docs..."
+
+  mv ${DOCS}/${PKG_NAME}/* ${DOCS}
+  rmdir ${DOCS}/${PKG_NAME}
+
+  echo ">> Done!"
+}
+
 function run_odoc {
   cleanup_folder
   compile_docs
   generate_html
   cleanup_strings
   add_support_files
+
+  if [ ${PREPARE_FOR_GITHUB} ]; then
+    prepare_for_github_docs
+  fi
+
   echo "Finished!"
 }
 
