@@ -59,8 +59,12 @@ using and maintaining this project is due to some limitations of `bsdoc` (versio
   no redirection.
 
 That being said, it looks as though bsdoc is currently the official way to do things, and the
-popularity of the package would likely mean that these issues would get resolved eventually, after
-which this library would by likely be archived.
+popularity of the package would likely mean that these issues would get resolved eventually or
+upstream with odoc.
+
+This library is mostly a hack really -- if you need slightly different behavior feel free to fork it
+and modify the script. This library will be archived once odoc and/or bsdoc are updated to work well
+with bucklescript (and hopefully dune) in a way that's identical to native.
 
 
 ## License
