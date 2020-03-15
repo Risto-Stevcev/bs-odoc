@@ -28,7 +28,8 @@ Options:
 
   -d  The directory to place the docs in. Defaults to docs/
   -i  An optional index.mld file (place it in the project root)
-  -g  Optionally prepare everything for github docs (ignores anything passed to -d)
+  -g  Optionally prepare everything for github docs. You must also include an index.mld file with -i.
+      Ignores anything passed to -d.
   -h  Help
 EOF
 }
@@ -44,6 +45,11 @@ while getopts ":d:i:hg" opts; do
       INDEX_FILE_ODOC=$(echo ${INDEX_FILE}  | sed "s/mld/odoc/g" | awk '{print "page-" $1}')
       ;;
     g)
+      if [ "${INDEX_FILE}" != "index.mld" ]; then
+        echo "Error: You must include an index.mld file located in your project root in order to use the -g option"
+        echo "Example usage: $0 -i index.mld -g"
+        exit 1
+      fi
       PREPARE_FOR_GITHUB=true
       DOCS="docs"
       ;;
