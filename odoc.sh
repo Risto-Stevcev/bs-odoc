@@ -135,8 +135,14 @@ function add_support_files {
 function prepare_for_github_docs {
   echo "<< Prepare for github docs..."
 
+  # Move contents up a directory
   mv ${DOCS}/${PKG_NAME}/* ${DOCS}
   rmdir ${DOCS}/${PKG_NAME}
+
+  # Fix the paths for odoc.css and highlight.pack.js
+  find ${DOCS} -type f -name "*.html" -exec \
+    perl -i.bak -0777 -pe 's|\.\./odoc.css|odoc.css|gs;' \
+                      -pe 's|\.\./highlight.pack.js|highlight.pack.js|gs' {} +
 
   echo ">> Done!"
 }
