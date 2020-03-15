@@ -1,10 +1,13 @@
-# DEPRECATED
-
-This project is deprecated and unmaintained. Use the [bsdoc][2] package instead.
-
 # bs-odoc
 
 Helper package to run [odoc][1] for bucklescript projects 
+
+## Note
+
+This project is mostly in maintenance mode. Currently I still use it because of some current
+limitations of [bsdoc][2], such as requiring dependencies like `esy`, not supporting `linux`, and
+not supporting additional `*.mld` files for indexing.
+
 
 ## Install
 
